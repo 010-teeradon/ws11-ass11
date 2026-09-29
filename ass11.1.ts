@@ -1,8 +1,8 @@
-// 1. Abstract Class TravelPackage
+export{};
 abstract class TravelPackage {
     _packageId: string;
     _packageName: string;
-    _basePrice: number; // เอา protected ออกเพื่อให้คลาสอื่นดึงค่าไปใช้ตรงๆ ได้
+    _basePrice: number;
 
     constructor(packageId: string, packageName: string, basePrice: number) {
         this._packageId = packageId;
@@ -22,13 +22,12 @@ class OneDayTrip extends TravelPackage {
     calculatePrice(people: number): number {
         let total = this._basePrice * people;
         if (people >= 5) {
-            total *= 0.90; // ลด 10%
+            total *= 0.90; 
         }
         return total;
     }
 }
 
-// 3. Class OvernightTrip
 class OvernightTrip extends TravelPackage {
     _numberOfNights: number;
 
@@ -40,13 +39,12 @@ class OvernightTrip extends TravelPackage {
     calculatePrice(people: number): number {
         let total = this._basePrice * people * this._numberOfNights;
         if (this._numberOfNights >= 3) {
-            total *= 0.85; // ลด 15%
+            total *= 0.85; 
         }
         return total;
     }
 }
 
-// 4. Class Customer
 class Customer {
     _customerId: string;
     _name: string;
@@ -59,7 +57,6 @@ class Customer {
     }
 }
 
-// 5. Class TravelAgency
 class TravelAgency {
     private _packages: TravelPackage[] = [];
 
@@ -81,7 +78,6 @@ class TravelAgency {
     }
 }
 
-// 6. Class Booking
 class Booking {
     private _bookingId: string;
     private _customer: Customer;
@@ -117,7 +113,6 @@ class Booking {
     }
 }
 
-// --- Run Application ---
 const agency = new TravelAgency();
 const pkg1 = new OneDayTrip("P001", "Bangkok City Tour", 1500);
 const pkg2 = new OvernightTrip("P002", "Chiang Mai Trip", 2500, 3);
